@@ -9,7 +9,7 @@ def execute(command) {
 pipeline {
     agent any
     tools {
-        maven 'MAVEL_LOCAL'
+        maven 'MAVEN_LOCAL'
     }
     stages {
         stage('Build backend') {

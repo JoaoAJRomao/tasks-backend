@@ -1,9 +1,19 @@
+def execute(command) {
+    if (isUnix()) {
+        sh command
+    } else {
+        bat command
+    }
+}
+
 pipeline {
     agent any
     stages {
-        stage('Testa pepiline por script') {
+        stage('Build backend') {
             steps {
-                echo 'Testando pipeline por script'
+                script {
+                    execute('mvn clean package -DskipTests=true')
+                }
             }
         }
     }

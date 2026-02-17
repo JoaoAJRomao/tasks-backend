@@ -9,7 +9,7 @@ def execute(command) {
 
 def verifyDeployment() {
     echo 'Aguardando o Tomcat processar o novo .war...'
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 4; i++) {
         try {
             def status = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://localhost:8001/tasks-backend/", returnStdout: true).trim()
             if (status == '200') {

@@ -32,7 +32,7 @@ pipeline {
         stage('Deploy to Tomcat') {
             steps {
                 script {
-                    execute("docker cp ${WORKSPACE}/target/tasks-backend.war tomcat-api:/usr/local/tomcat/webapps/")
+                    execute('docker cp target/tasks-backend.war tomcat-api:/usr/local/tomcat/webapps/')
                 }
             }
         }

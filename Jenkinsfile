@@ -30,11 +30,8 @@ pipeline {
         }
 
         stage('Deploy to Tomcat') {
-            steps {
-                script {
-                    sh "docker cp /media/arthur/dadosHd/jenkins_home/workspace/tasks-backend/target/tasks-backend.war tomcat-api:/usr/local/tomcat/webapps/"
-                }
-            }
+            echo 'Alterado o Dockerfile para copiar o .war para a pasta de deploy do Tomcat'
+            echo 'Deploying to Tomcat...'
         }
     }
 }

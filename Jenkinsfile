@@ -1,4 +1,5 @@
 def execute(command) {
+    /* groovylint-disable-next-line UnnecessaryGetter */
     if (isUnix()) {
         sh command
     } else {
@@ -16,6 +17,14 @@ pipeline {
             steps {
                 script {
                     execute('mvn clean package -DskipTests=true')
+                }
+            }
+        }
+
+        stage('Unit tests') {
+            steps {
+                script {
+                    execute('mvn test')
                 }
             }
         }

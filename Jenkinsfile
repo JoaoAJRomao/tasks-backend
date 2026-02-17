@@ -30,8 +30,12 @@ pipeline {
         }
 
         stage('Deploy to Tomcat') {
-            echo 'Alterado o Dockerfile para copiar o .war para a pasta de deploy do Tomcat'
-            echo 'Deploying to Tomcat...'
+            steps {
+                script {
+                    echo 'Alterado o Dockerfile para copiar o .war para a pasta de deploy do Tomcat'
+                    echo 'Deploying to Tomcat...'
+                }
+            }
         }
     }
 }

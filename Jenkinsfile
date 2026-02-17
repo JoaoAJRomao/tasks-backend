@@ -50,7 +50,6 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying to Tomcat...'
-                    execute('docker compose up -d --no-deps --force-recreate tomcat')
                 }
             }
         }

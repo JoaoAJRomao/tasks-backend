@@ -32,6 +32,8 @@ pipeline {
         stage('Deploy to Tomcat') {
             steps {
                 script {
+                    execute('pwd') // Mostra o diretório atual no log
+                    execute('ls -R target') // Lista o que tem na pasta target
                     execute('docker cp target/tasks-backend.war tomcat-api:/usr/local/tomcat/webapps/')
                 }
             }

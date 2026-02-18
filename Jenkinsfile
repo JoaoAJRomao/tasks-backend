@@ -9,9 +9,10 @@ def execute(command) {
 
 def verifyDeployment() {
     echo 'Aguardando o Tomcat processar o novo .war...'
+    def status = '000'
     for (int i = 0; i < 4; i++) {
         try {
-            ddef status = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://tomcat-api:8080/tasks-backend/", returnStdout: true).trim()
+            status = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://tomcat-api:8080/tasks-backend/", returnStdout: true).trim()
             if (status == '200') {
                 echo 'Sucesso! Aplicação está online.'
                 return true

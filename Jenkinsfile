@@ -22,7 +22,7 @@ def verifyDeployment() {
         }
         sleep 5
     }
-    error "Falha no Deploy: A aplicação não respondeu após várias tentativas."
+    error 'Falha no Deploy: A aplicação não respondeu após várias tentativas.'
 }
 
 pipeline {
@@ -43,6 +43,19 @@ pipeline {
             steps {
                 script {
                     execute('mvn test')
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withCredentials([string(credentialsId: 'SonarToken', variable: 'SONAR_TOKEN')]) {
+                    script {
+                        execute "mvn sonar:sonar \
+                            -Dsonar.host.url=http://sonar:9000 \
+                            -Dsonar.projectKey=tasks-frontend \
+                            -Dsonar.login=${SONAR_TOKEN}"
+                    }
                 }
             }
         }

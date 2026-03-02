@@ -51,7 +51,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'SonarToken', variable: 'SONAR_TOKEN')]) {
                     script {
-                        execute "mvn sonar:sonar \
+                        execute "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar \
                             -Dsonar.host.url=http://sonar:9000 \
                             -Dsonar.projectKey=tasks-frontend \
                             -Dsonar.login=${SONAR_TOKEN}"
